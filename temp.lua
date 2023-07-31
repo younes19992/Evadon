@@ -1,14 +1,14 @@
 -- Define the module table
-local MapCoordinates = {}
+local MapList = {}
 
 -- Initialize the Rank table with the existing maps
-MapCoordinates.Rank = {
+MapList.Rank = {
     easylvl = {
         {name = "Construct", coords = {}},
-        {name = "Indoor Courtyard", coords = {}},
+        {name = "Indoor Courtyard", coords = {}}
     },
     normallvl = {
-        {name = "Arid Ruins", coords = {x = -181, y = -18,z =  27}},
+        {name = "Arid Ruins", coords = {}},
         {name = "Backrooms", coords = {}},
         {name = "Seraph Research", coords = {}},
         {name = "Underground Facility", coords = {}},
@@ -27,6 +27,8 @@ MapCoordinates.Rank = {
         {name = "Winter City", coords = {}},
         {name = "Nuclear Processing", coords = {}},
         {name = "Elysium Moonbase", coords = {}},
+
+        -- Add other maps here
     },
     hardlvl = {
         {name = "Desert Bus", coords = {}},
@@ -55,39 +57,44 @@ MapCoordinates.Rank = {
     },
     rarelvl = {
         {name = "Trimp", coords = {}},
+        -- Add other maps here
     }
 }
 
--- Function to load and execute the library
-function MapCoordinates.LoadLibrary()
-    -- Function to add coordinates to a map
-    function MapCoordinates.AddCoordinates(mapName, x, y, z)
-        for _, level in pairs(MapCoordinates.Rank) do
-            for _, map in ipairs(level) do
-                if map.name == mapName then
-                    table.insert(map.coords, {x = x, y = y, z = z})
-                    return true
-                end
-            end
-        end
-        return false -- Map not found
-    end
-
-    -- Function to retrieve coordinates of a map
-    function MapCoordinates.GetCoordinates(mapName)
-        for _, level in pairs(MapCoordinates.Rank) do
-            for _, map in ipairs(level) do
-                if map.name == mapName then
-                    return map.coords
-                end
-            end
-        end
-        return nil -- Map not found
-    end
+-- Function to get the entire map list
+function MapList.GetMapList()
+    return MapList.Rank
 end
 
--- Return the module table
-return MapCoordinates
+-- Function to get the list of maps for a specific difficulty level
+function MapList.GetMapsByDifficulty(difficulty)
+    return MapList.Rank[difficulty]
+end
+
+-- Function to get the list of coordinates for a specific map
+function MapList.GetCoordinatesForMap(mapName)
+    for _, level in pairs(MapList.Rank) do
+        for _, map in ipairs(level) do
+            if map.name == mapName then
+                return map.coords
+            end
+        end
+    end
+    return nil -- Map not found
+end
+
+-- Function to add coordinates to a map in the format {name = "Construct", coords = {10, 20, 30}}
+-- function MapList.AddCoordinatesToMap(mapName, coords)
+--     for _, level in pairs(MapList.Rank) do
+--         for _, map in ipairs(level) do
+--             if map.name == mapName then
+--                 map.coords = coords
+--                 return true
+--             end
+--         end
+--     end
+--     return false -- Map not found
+-- end
 
 -- Return the module table
-return MapCoordinates
+return MapList
