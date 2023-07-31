@@ -72,16 +72,16 @@ MapCoordinates.Rank = {
 -- end
 
 -- Function to retrieve coordinates of a map
--- function MapCoordinates.GetCoordinates(mapName)
---     for _, level in pairs(MapCoordinates.Rank) do
---         for _, map in ipairs(level) do
---             if map.name == mapName then
---                 return map.coords
---             end
---         end
---     end
---     return nil -- Map not found
--- end
+ function MapCoordinates.GetCoordinates(mapName)
+    for _, level in pairs(MapCoordinates.Rank) do
+     for _, map in ipairs(level) do
+            if map.name == mapName then
+               return map.coords
+             end
+        end
+    end
+     return nil -- Map not found
+end
 
 -- Return the module table
--- return MapCoordinates
+return MapCoordinates
