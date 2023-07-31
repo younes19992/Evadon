@@ -58,30 +58,36 @@ MapCoordinates.Rank = {
     }
 }
 
--- Function to add coordinates to a map
--- function MapCoordinates.AddCoordinates(mapName, x, y, z)
---     for _, level in pairs(MapCoordinates.Rank) do
---         for _, map in ipairs(level) do
---             if map.name == mapName then
---                 table.insert(map.coords, {x = x, y = y, z = z})
---                 return true
---             end
---         end
---     end
---     return false -- Map not found
--- end
-
--- Function to retrieve coordinates of a map
- function MapCoordinates.GetCoordinates(mapName)
-    for _, level in pairs(MapCoordinates.Rank) do
-     for _, map in ipairs(level) do
-            if map.name == mapName then
-               return map.coords
-             end
+-- Function to load and execute the library
+function MapCoordinates.LoadLibrary()
+    -- Function to add coordinates to a map
+    function MapCoordinates.AddCoordinates(mapName, x, y, z)
+        for _, level in pairs(MapCoordinates.Rank) do
+            for _, map in ipairs(level) do
+                if map.name == mapName then
+                    table.insert(map.coords, {x = x, y = y, z = z})
+                    return true
+                end
+            end
         end
+        return false -- Map not found
     end
-     return nil -- Map not found
+
+    -- Function to retrieve coordinates of a map
+    function MapCoordinates.GetCoordinates(mapName)
+        for _, level in pairs(MapCoordinates.Rank) do
+            for _, map in ipairs(level) do
+                if map.name == mapName then
+                    return map.coords
+                end
+            end
+        end
+        return nil -- Map not found
+    end
 end
+
+-- Return the module table
+return MapCoordinates
 
 -- Return the module table
 return MapCoordinates
