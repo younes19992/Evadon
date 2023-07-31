@@ -8,7 +8,7 @@ MapCoordinates.Rank = {
         {name = "Indoor Courtyard", coords = {}},
     },
     normallvl = {
-        {name = "Arid Ruins", coords = {-181, -18, 27}},
+        {name = "Arid Ruins", coords = {x = -181, y = -18,z =  27}},
         {name = "Backrooms", coords = {}},
         {name = "Seraph Research", coords = {}},
         {name = "Underground Facility", coords = {}},
