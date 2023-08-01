@@ -42,32 +42,3 @@ local locations = {
     {name = "Trimp", coords = {}},
     
 }
-
--- Function to get count and all coordinates for a given location
-local function getAllCoordinates(location)
-    local count = #location.coords
-    return count, location.coords
-end
-
--- Function to get coordinates for a given map name
-local function getCordinates(mapname)
-    for _, location in ipairs(locations) do
-        if location.name == mapname then
-            local locationCount, locationCoordinates = getAllCoordinates(location)
-            return { numofcoords = locationCount, coords = locationCoordinates }
-        end
-    end
-    return { numofcoords = 0, coords = {} }
-end
-
--- Function to format coordinates as a string
-local function formatCoordinates(coordsSet)
-    return "{" .. coordsSet[1] .. "," .. coordsSet[2] .. "," .. coordsSet[3] .. "}"
-end
-
--- Function to pick a specific coordinate by index
-local function pickCoordinateByIndex(coordinates, index)
-    if index >= 1 and index <= #coordinates then
-        return coordinates[index]
-    end
-end
